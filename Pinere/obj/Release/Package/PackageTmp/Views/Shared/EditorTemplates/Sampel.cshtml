@@ -1,0 +1,87 @@
+﻿@using Pinere.Models
+@using Pinere.Helper
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  Sampel
+@Html.HiddenFor(o => o.Id)
+@Html.HiddenFor(o => o.PasienId)
+
+<div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+    <div class="row" style="margin-bottom: 20px; ">
+        <div class="col-md-2" style="text-align:right">
+                <button type="button" class="btn btn-primary" style="text-align:center;width:100%">
+                    <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;&nbsp; Sampel
+                </button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Ambil Sampel :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalAmbilSampel, new { @class = "form-control input-sm", @placeholder = "Tanggal Ambil Sampel", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Jenis Spesimen :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.JenisSpesimen, new { @class = "form-control input-sm", @placeholder = "Jenis Spesimen" })
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Jenis Pemeriksaan Lab :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.JenisPemeriksaanLab, new { @class = "form-control input-sm", @placeholder = "Jenis Pemeriksaan Lab" })
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Kirim Sampel :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalKirimSampel, new { @class = "form-control input-sm", @placeholder = "Tanggal Kirim Sampel", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Keluar RS :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalKeluarRS, new { @class = "form-control input-sm", @placeholder = "Tanggal Keluar RS", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+       <div class="form-group">
+        <label class="col-md-3 control-label">Sebab Keluar RS :</label>
+        <div class="col-md-4">
+              @Html.DropDownListFor(o => o.Kondisi, Model.KondisiList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function DocumentReadySampel() {
+        $('#Sampel_TanggalAmbilSampel').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        $('#Sampel_TanggalKirimSampel').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        $('#Sampel_TanggalKeluarRS').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+    }
+
+</script>

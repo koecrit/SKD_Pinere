@@ -1,0 +1,16 @@
+﻿body {
+}
+table, tbody, tr {
+    cursor:pointer;
+}
+.btn-blue {
+    color:#ffffff;
+    background-color:#3498db;
+    border-color:#3498db;
+}
+    .btn-blue:hover {
+        color:#ffffff;
+        background-color:#217dbb;
+        border-color:#217dbb;
+    }
+

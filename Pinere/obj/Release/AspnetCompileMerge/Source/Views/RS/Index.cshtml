@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Pinere System";
+}
+
+<div class="row" style="padding-top:20px"></div>
+<div class="jumbotron" style="text-align:center;">
+    <h1>Pinere Information System</h1>
+    <p class="lead">Selamat datang di Sistem Informasi Pinere.</p>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+         <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Input Data Sampel</h2>
+                <p>
+                    Melalui sistem ini, pihak RS akan melakukan input data sampel jika ada Notifikasi baru dari pihak KKP jika ada pasien yang sakit dan di rujuk di RS tersebut.
+                </p>
+                <p><a class="btn btn-danger" href="~/RS/Task/">Data Pasien Baru <span class="badge">@ViewBag.RSData</span></a></p>
+                
+        </div>
+        </div>
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ('@ViewBag.RSData' != "0") {
+                $("a#aRS").html("Data Pasien <span class=\"badge\">@ViewBag.RSData</span>");
+            }
+        });
+    </script>
+}

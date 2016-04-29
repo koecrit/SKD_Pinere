@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Content/buttons.dataTables.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/buttons.bootstrap.min.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="pull-left">@Html.ActionLink("SKD PINERE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand"})</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("airline"))
+                        {
+                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                             <li>@Html.ActionLink("Input Data Airline", "Input", "Airline")</li>
+                             <li>@Html.ActionLink("Lihat History", "Tracking", "Airline")</li>
+                        } 
+                        else if (User.IsInRole("kkp"))
+                        {
+                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                             <li>@Html.ActionLink("Input Baru", "NewEntry", "KKP")</li>
+                             <li>@Html.ActionLink("Data Airline", "Task", "KKP", null, new { @id="aKKP1"})</li>
+                             <li>@Html.ActionLink("Lihat Pasien", "Tracking", "KKP")</li>
+                        } 
+                        else if (User.IsInRole("rs"))
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "RS")</li>
+                            <li>@Html.ActionLink("Data Pasien", "Task", "RS", null, new { @id="aRS"})</li>
+                        }
+                        else if (User.IsInRole("balitbang"))
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Data Sampel Pasien", "Task", "Litbang", null, new { @id="aLitbang"})</li>
+                        }
+                        else if (User.IsInRole("p2pl"))
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Data", "Index", "P2pl")</li>
+                        }
+                        else if (User.IsInRole("admin"))
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Report", "Report", "Admin")</li>
+                        }
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Login as : @User.Identity.Name <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>   
+                          </ul>
+                      </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-header"></div>
+    <div class="container-fluid body-content" style="float: none; margin-top: 0;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/dataTables")
+    <script src="@Url.Content("~/Scripts/dataTables.buttons.min.js")" ></script>
+    @*<script src="@Url.Content("~/Scripts/buttons.bootstrap.min.js")" ></script>*@
+    <script src="@Url.Content("~/Scripts/buttons.print.min.js")" ></script>
+    <script src="@Url.Content("~/Scripts/buttons.html5.min.js")" ></script>
+    <script src="@Url.Content("~/Scripts/pdfmake.min.js")" ></script>
+    <script src="@Url.Content("~/Scripts/vfs_fonts.js")" ></script>
+    <script src="@Url.Content("~/Scripts/jszip.min.js")" ></script>
+    <script src="@Url.Content("~/Scripts/buttons.flash.min.js")" ></script>
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/autonumeric")
+    @Scripts.Render("~/bundles/fileinput")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

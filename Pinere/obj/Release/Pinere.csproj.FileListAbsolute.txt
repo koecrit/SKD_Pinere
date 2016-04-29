@@ -1,0 +1,82 @@
+D:\TFS\PINERE\Code\Pinere2\Pinere\obj\Release\Pinere.csprojResolveAssemblyReference.cache
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\Pinere.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\Pinere.pdb
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\Antlr3.Runtime.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\EntityFramework.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\EPPlus.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\MICA.Web.Mvc.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\Microsoft.Web.Infrastructure.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\Newtonsoft.Json.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Net.Http.Formatting.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Helpers.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Http.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Http.WebHost.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Mvc.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Optimization.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Razor.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.WebPages.Deployment.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.WebPages.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.WebPages.Razor.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\WebGrease.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\EntityFramework.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\Newtonsoft.Json.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Net.Http.Formatting.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Helpers.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Http.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Http.WebHost.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Mvc.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.Razor.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.WebPages.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.WebPages.Deployment.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\bin\System.Web.WebPages.Razor.xml
+D:\TFS\PINERE\Code\Pinere2\Pinere\obj\Release\Pinere.dll
+D:\TFS\PINERE\Code\Pinere2\Pinere\obj\Release\Pinere.pdb
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\Pinere.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\Pinere.pdb
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\Antlr3.Runtime.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\EntityFramework.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\Newtonsoft.Json.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Helpers.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Mvc.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Optimization.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Razor.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.WebPages.Deployment.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.WebPages.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.WebPages.Razor.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\WebGrease.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\EntityFramework.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\Newtonsoft.Json.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Helpers.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Mvc.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.Razor.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.WebPages.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.WebPages.Deployment.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\bin\System.Web.WebPages.Razor.xml
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\obj\Release\Pinere.csprojResolveAssemblyReference.cache
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\obj\Release\Pinere.dll
+C:\Users\deden.nurdeni\Documents\Visual Studio 2012\Projects\Pinere\Pinere\obj\Release\Pinere.pdb
+D:\PINERE\Code\LatestCode\Pinere\bin\Pinere.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\Pinere.pdb
+D:\PINERE\Code\LatestCode\Pinere\bin\Antlr3.Runtime.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\EntityFramework.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\Microsoft.Web.Infrastructure.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\Newtonsoft.Json.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Helpers.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Mvc.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Optimization.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Razor.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.WebPages.Deployment.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.WebPages.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.WebPages.Razor.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\WebGrease.dll
+D:\PINERE\Code\LatestCode\Pinere\bin\EntityFramework.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\Newtonsoft.Json.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Helpers.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Mvc.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.Razor.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.WebPages.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.WebPages.Deployment.xml
+D:\PINERE\Code\LatestCode\Pinere\bin\System.Web.WebPages.Razor.xml
+D:\PINERE\Code\LatestCode\Pinere\obj\Release\Pinere.dll
+D:\PINERE\Code\LatestCode\Pinere\obj\Release\Pinere.pdb

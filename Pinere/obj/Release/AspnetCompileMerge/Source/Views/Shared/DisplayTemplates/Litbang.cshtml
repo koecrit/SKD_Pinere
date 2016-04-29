@@ -1,0 +1,80 @@
+﻿@using Pinere.Models
+@using Pinere.Helper
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  Litbang
+@Html.HiddenFor(o => o.Id)
+@Html.HiddenFor(o => o.PasienId)
+
+<div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+    <div class="row" style="margin-bottom: 20px; ">
+        <div class="col-md-2" style="text-align:right">
+                <button type="button" class="btn btn-primary" style="text-align:center;width:100%" data-toggle="collapse" data-target="#dvLitbang">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;&nbsp; Hasil Lab
+                </button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div id="dvLitbang" class="collapse">
+        <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Terima Sampel :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalTerimaSampel, new { @class = "form-control input-sm", @placeholder = "Tanggal Terima Sampel", @Style = "display:inline;width:180px",@readonly="readonly" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+        <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Periksa Lab :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalPeriksaLab, new { @class = "form-control input-sm", @placeholder = "Tanggal Periksa Lab", @Style = "display:inline;width:180px",@readonly="readonly" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Hasil Lab :</label>
+        <div class="col-md-4">
+            @Html.HiddenFor(o=>o.HasilLab)
+            @for (int i = 0; i < Model.HasilLabOption.Count; i++)
+            {
+                <div class="checkbox">
+                  <label style="padding-left:0px">
+                    @Html.RadioButton("rbHasilLab",Model.HasilLabOption[i].Value,new{@id=Model.HasilLabOption[i].Id,@onclick="return onClickRadio('"+Model.HasilLabOption[i].Id+"','"+Model.HasilLabOption[i].Value+"')",@disabled="disabled"})
+                    @Model.HasilLabOption[i].Text
+                  </label>
+                </div>
+            }
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+        <div class="form-group">
+        <label class="col-md-3 control-label">Keterangan :</label>
+        <div class="col-md-8">
+              @Html.TextBoxFor(o => o.Keterangan, new { @class = "form-control input-sm", @placeholder = "Keterangan",@readonly="readonly" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Upload Hasil Lab:</label>
+        <div class="col-md-8">
+              <label class="form-control input-sm" readonly="readonly">@Html.Raw(Model.AttachmentLink)</label>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function DocumentReadyLitbang() {
+      
+        if ($('#Litbang_HasilLab').val() != "") {
+            $('#RB' + $('#Litbang_HasilLab').val()).prop("checked", true);
+        }
+    }
+    function onClickRadio(id, value)
+    {
+        $('#Litbang_HasilLab').val($("input:radio[name='Litbang.rbHasilLab']:checked").val());
+    }
+
+</script>

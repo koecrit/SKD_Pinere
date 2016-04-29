@@ -1,0 +1,588 @@
+﻿@using Pinere.Models
+@using Pinere.Helper
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  DataAirline
+@Html.HiddenFor(o => o.Id)
+@Html.HiddenFor(o => o.FormGendec)
+@Html.HiddenFor(o => o.FormGendecLink)
+@Html.JsonFor(o=>o.PetugasAirlineCollection.PetugasAirline)
+@Html.HiddenFor(o => o.TipeKotaTemp)
+
+<div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+    <div class="row" style="margin-bottom: 20px; ">
+        <div class="col-md-2" style="text-align:right">
+                <button type="button" class="btn btn-primary" style="text-align:center;width:100%">
+                    <span class="glyphicon glyphicon-plane" aria-hidden="true"></span>&nbsp;&nbsp; Airplane Info
+                </button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Nama Airline :</label>
+        <div class="col-md-9">
+            @Html.HiddenFor(o=>o.NamaAirline)
+            @Html.TextBoxFor(o => o.NamaAirlineDis, new { @class = "form-control input-sm",@readonly = "readonly", @Style = "width:400px;display:inline", @placeholder = "Nama Airline" })
+            <div id="dvCariAirline" style="display:inline">
+                <button id="btnCariAirline" type="button" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="cari airline" data-original-title="cari airline">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button id="btnHapusAirline" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="hapus airline" data-original-title="hapus airline">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Nomor Penerbangan :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.NomorPenerbangan, new { @class = "form-control input-sm", @Style = "width:180px", @placeholder = "Nomor Penerbangan" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Tanggal Kedatangan :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.WaktuBerangkat, new { @class = "form-control input-sm", @placeholder = "Tanggal Kedatangan", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Kota Asal :</label>
+        <div class="col-md-9">
+            @Html.HiddenFor(o=>o.KotaAsal)
+            @Html.TextBoxFor(o => o.KotaAsalDis, new { @class = "form-control input-sm",@readonly = "readonly", @Style = "width:400px;display:inline", @placeholder = "Kota Asal" })
+             <button id="btnCariKotaAsal" type="button" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="cari kota" data-original-title="cari kota">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button id="btnHapusKotaAsal" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="hapus kota" data-original-title="hapus kota">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Kota Tujuan :</label>
+        <div class="col-md-9">
+            @Html.HiddenFor(o=>o.KotaTujuan)
+             @Html.TextBoxFor(o => o.KotaTujuanDis, new { @class = "form-control input-sm",@readonly = "readonly", @Style = "width:400px;display:inline", @placeholder = "Kota Tujuan" })
+             <button id="btnCariKotaTujuan" type="button" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="cari kota" data-original-title="cari kota">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button id="btnHapusKotaTujuan" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="hapus kota" data-original-title="hapus kota">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div id="dvExtra">
+            <div class="form-group">
+        <label class="col-md-2 control-label">Jumlah Penumpang :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.JumlahPenumpang, new { @class = "form-control input-sm", @Style = "width:150px", @placeholder = "Jumlah Penumpang" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Nama Petugas :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.NamaPetugas, new { @class = "form-control input-sm", @Style = "width:400px", @placeholder = "Nama Petugas" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Nomer Pegawai :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.NomorPetugas, new { @class = "form-control input-sm", @Style = "width:400px", @placeholder = "Nomer Pegawai" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Penumpang Sakit?:</label>
+        <div class="col-md-9">
+            @Html.HiddenFor(o=>o.PenumpangSakit)
+            @Html.DropDownListFor(o => o.PenumpangSakitList, Model.PenumpangSakitList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+      <div class="form-group" id="dvJumlahSakit" style="display:none">
+        <label class="col-md-2 control-label">Jumlah Penumpang Sakit:</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.JumlahSakit, new { @class = "form-control input-sm", @Style = "width:150px", @placeholder = "Jumlah Penumpang Sakit" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Upload Form GenDec:</label>
+        <div class="col-md-9">
+                <div id="dvGenDec">
+                    <input id="DataAirline_UFGenDec" name="DataAirline_UFGenDec" type="file">
+                </div>
+                <label id="UFGenDecLabel" class="form-control input-sm" style="display:inline;width:300px"></label>
+                <button id="btnResetGenDec" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="reset GenDec" data-original-title="reset GenDec">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    </div>
+         
+</div>
+<div class="modal fade" id="dialogEmp" tabindex="-1" role="dialog" aria-labelledby="dialogEmp-label" aria-hidden="true" >
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="dialogEmp-label">Petugas Airline</h4>
+            </div>
+            <div class="modal-body">
+                @{Html.RenderPartial("EditorDialogTemplates/PetugasAirline", Model);}
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnAdd" class="btn btn-success">Ok</button>
+                <button type="button" id="btnCancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dialogKota" tabindex="-1" role="dialog" aria-labelledby="dialogKota-label" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="dialogKota-label">Daftar Kota</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblKota" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Kode IATA
+                            </th>
+                            <th>
+                                Kota
+                            </th>
+                            <th>
+                                Negara
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                             <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dialogAirline" tabindex="-1" role="dialog" aria-labelledby="dialogAirline-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="dialogAirline-label">Daftar Airline</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblAirline" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                             <th>
+                                Id
+                            </th>
+                            <th>
+                                Maskapai
+                            </th>
+                            <th>
+                                Negara
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                             <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var table = null;
+
+    function DocumentReadyDataAirline() {
+        if ('@User.IsInRole("kkp")' == "True") {
+            $('#dvExtra').hide();
+            $("#DataAirline_PenumpangSakit").val("1");
+            $('#dvCariAirline').show();
+        } else {
+            $('#dvExtra').show();
+            $('#dvCariAirline').hide();
+        }
+        if ('@User.IsInRole("airline")' == "True") {
+            if ($("#DataAirline_NamaAirline").val() == "") {
+                $("#DataAirline_NamaAirline").val('@ViewBag.responsibleId');
+                $("#DataAirline_NamaAirlineDis").val('@ViewBag.responsibleName');
+            }
+        }
+        $('#DataAirline_WaktuBerangkat').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        $("#DataAirline_JumlahPenumpang").autoNumeric({ mDec: '0', wEmpty: 'zero' });
+        $("#DataAirline_JumlahSakit").autoNumeric({ mDec: '0', wEmpty: 'zero' });
+        if ($("#DataAirline_PenumpangSakit").val() != "") {
+            $("#DataAirline_PenumpangSakitList").val($("#DataAirline_PenumpangSakit").val());
+        }
+        $("#DataAirline_PenumpangSakitList").change(function () {
+            $("#DataAirline_PenumpangSakit").val($("#DataAirline_PenumpangSakitList").val());
+            if ($("#DataAirline_PenumpangSakitList").val() == "1") {
+                $("#dvJumlahSakit").show();
+            } else {
+                $("#dvJumlahSakit").hide();
+            }
+        });
+        $("#DataAirline_PenumpangSakitList").trigger("change");
+        $("#DataAirline_UFGenDec").fileinput({
+            showUpload: false,
+            mainClass: 'input-group-sm',
+            dropZoneEnabled: false,
+            showPreview: false,
+        });
+        if ($("#DataAirline_FormGendec").val() != '') {
+            $("#UFGenDecLabel").html($("#DataAirline_FormGendecLink").val());
+            $("#UFGenDecLabel").show();
+            $("#btnResetGenDec").show();
+            $('#dvGenDec').hide();
+        } else {
+            $("#UFGenDecLabel").hide();
+            $("#btnResetGenDec").hide();
+            $('#dvGenDec').show();
+        }
+        $("#btnResetGenDec").click(function () {
+            $("#DataAirline_FormGendec").val('');
+            $("#UFGenDecLabel").html('');
+            $("#UFGenDecLabel").hide();
+            $("#btnResetGenDec").hide();
+            $('#dvGenDec').show();
+        });
+        $("#DataAirline_UFGenDec").change(function () {
+            $("#DataAirline_FormGendec").val($("#DataAirline_UFGenDec").val().replace(/\\/g, '/').replace(/.*\//, ''));
+        });
+
+        table = $('#tblPetugas').DataTable({
+            "bInfo": false,
+            "bPaginate": false,
+            "bFilter": false,
+            "aaData": JSON.parse($('#DataAirline_PetugasAirlineCollection_PetugasAirline').val()),
+            "aoColumns": [
+               { "mData": "No", "sClass": "text-center" },
+               { "mData": "Nama" },
+               { "mData": "NomorPegawai" },
+               { "mData": "WargaNegara" },
+               { "mData": "Passport" },
+               {
+                   "mData": function (source, type, val) {
+                       return "<button type=\"button\" class=\"btn btn-warning btn-xs\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"edit\" data-original-title=\"edit\" onClick='return EditPetugas(" + source.No + ");'><span class=\"glyphicon glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></button>&nbsp;<button type=\"button\" class=\"btn btn-danger btn-xs\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"delete\" data-original-title=\"delete\" onClick='return DeletePetugas(" + source.No + ");'><span class=\"glyphicon glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></button>";
+                   }, "sClass": "text-center"
+               }
+            ]
+        });
+        $("#btnAdd").click(function () {
+            OKPetugas();
+        });
+        $("#btnCancel").click(function () {
+            CancelPetugas();
+        });
+        $("#DataAirline_PetugasAirlineCollection_WargaNegaraList").change(function () {
+            $("#DataAirline_PetugasAirlineCollection_WargaNegara").val($("#DataAirline_PetugasAirlineCollection_WargaNegaraList").val());
+        });
+        $("#btnCariKotaAsal").click(function () {
+            $("#DataAirline_TipeKotaTemp").val("Asal");
+            $('#dialogKota').modal('show');
+        });
+        $("#btnCariKotaTujuan").click(function () {
+            $("#DataAirline_TipeKotaTemp").val("Tujuan");
+            $('#dialogKota').modal('show');
+        });
+        var tablex = $('#tblKota').DataTable({
+            "bInfo": true,
+            "bServerSide": true,
+            "sAjaxSource": '@Url.Action("GetKota")',
+            "aoColumns":
+            [
+                { "mData": "Code", "sClass": "center" },
+                { "mData": "Name" },
+                { "mData": "Country" }
+            ],
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                $.ajax({
+                    dataType: 'json',
+                    global: false,
+                    type: "GET",
+                    url: sSource,
+                    data: aoData,
+                    beforeSend: function () {
+                        $("#loadingKotaIndicator").show();
+                    },
+                    complete: function () {
+                        $("#loadingKotaIndicator").hide();
+                    },
+                    error: function () {
+                        $("#tblKota > tbody").html("<tr class='odd'><td colspan='6' class='center'>Sorry, we encounter a problem when trying to load department list from the server.</td></tr>");
+                    },
+                    success: fnCallback
+                });
+            }
+        });
+        $('#tblKota tbody').on('click', 'tr', function () {
+            var data = tablex.row(this).data();
+            if ($("#DataAirline_TipeKotaTemp").val() == "Asal") {
+                $('#DataAirline_KotaAsal').val(data["Code"]);
+                $('#DataAirline_KotaAsalDis').val(data["Name"]);
+            } else if ($("#DataAirline_TipeKotaTemp").val() == "Tujuan") {
+                $('#DataAirline_KotaTujuan').val(data["Code"]);
+                $('#DataAirline_KotaTujuanDis').val(data["Name"]);
+            }
+            $("#dialogKota").modal('hide');
+        });
+
+        $("#btnHapusKotaAsal").click(function () {
+            $('#DataAirline_KotaAsal').val('');
+            $('#DataAirline_KotaAsalDis').val('');
+        });
+        $("#btnHapusKotaTujuan").click(function () {
+            $('#DataAirline_KotaTujuan').val('');
+            $('#DataAirline_KotaTujuanDis').val('');
+        });
+        $("#btnCariAirline").click(function () {
+            $('#dialogAirline').modal('show');
+        });
+        var tablea = $('#tblAirline').DataTable({
+            "bInfo": true,
+            "bServerSide": true,
+            "sAjaxSource": '@Url.Action("GetMaskapai")',
+            "aoColumns":
+            [
+                { "mData": "Id" },
+                { "mData": "Name" },
+                { "mData": "Country" }
+            ],
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                $.ajax({
+                    dataType: 'json',
+                    global: false,
+                    type: "GET",
+                    url: sSource,
+                    data: aoData,
+                    beforeSend: function () {
+                        $("#loadingMaskapaiIndicator").show();
+                    },
+                    complete: function () {
+                        $("#loadingMaskapaiIndicator").hide();
+                    },
+                    error: function () {
+                        $("#tblAirline > tbody").html("<tr class='odd'><td colspan='6' class='center'>Sorry, we encounter a problem when trying to load department list from the server.</td></tr>");
+                    },
+                    success: fnCallback
+                });
+            }
+        });
+        $('#tblAirline tbody').on('click', 'tr', function () {
+            var data = tablea.row(this).data();
+            $('#DataAirline_NamaAirline').val(data["Id"]);
+            $('#DataAirline_NamaAirlineDis').val(data["Name"]);
+            $("#dialogAirline").modal('hide');
+        });
+        $("#btnHapusAirline").click(function () {
+            $('#DataAirline_NamaAirline').val('');
+            $('#DataAirline_NamaAirlineDis').val('');
+        });
+    }
+    function OKPetugas() {
+        var No = $('#DataAirline_PetugasAirlineCollection_No').val();
+        if (No == '') {
+            AddPetugas();
+        } else {
+            UpdatePetugas();
+        }
+        return false;
+    }
+    function CancelPetugas() {
+        var No = $('#DataAirline_PetugasAirlineCollection_No').val();
+        if (No != '') {
+            ResetPetugas();
+        }
+        return false;
+    }
+    function AddPetugas() {
+        var strMessage = '';
+        var No = 1;
+        var Nama = $('#DataAirline_PetugasAirlineCollection_Nama').val();
+        var NomorPegawai = $('#DataAirline_PetugasAirlineCollection_NomorPegawai').val();
+        var WargaNegara = $('#DataAirline_PetugasAirlineCollection_WargaNegaraList').val();
+        var Passport = $('#DataAirline_PetugasAirlineCollection_Passport').val();
+        var WargaNegaraName = $('#DataAirline_PetugasAirlineCollection_WargaNegaraList option:selected').text();
+
+        if (Nama == '') {
+            strMessage += 'Silahkan isi nama<br>';
+        }
+
+        if (strMessage != '') {
+            $('#modalAlert').find('.modal-body').html("Silahkan isi beberapa isian berikut : <br><ol>" + strMessage + "</ol>")
+            $('#modalAlert').modal('show');
+            return false;
+        }
+
+        var Petugass = GetPetugas();
+
+        if (Petugass != null) {
+            No = Petugass.length + 1;
+        } else {
+            Petugass = new Array();
+        }
+        var Petugas = new Object();
+
+        Petugas.No = No;
+        Petugas.Nama = Nama;
+        Petugas.NomorPegawai = NomorPegawai;
+        Petugas.WargaNegara = WargaNegara;
+        Petugas.Passport = Passport;
+
+        Petugass.push(Petugas);
+        $('#DataAirline_PetugasAirlineCollection_PetugasAirline').val(JSON.stringify(Petugass));
+        table.row.add(
+                {
+                    "No": No,
+                    "Nama": Nama,
+                    "NomorPegawai": NomorPegawai,
+                    "WargaNegara": WargaNegaraName,
+                    "Passport": Passport
+                }
+        ).draw();
+        ResetPetugas();
+        $("#dialogEmp").modal('hide');
+        return false;
+    }
+    function UpdatePetugas() {
+        var strMessage = '';
+        var No = $('#DataAirline_PetugasAirlineCollection_No').val();
+        var i = No - 1;
+        var Nama = $('#DataAirline_PetugasAirlineCollection_Nama').val();
+        var NomorPegawai = $('#DataAirline_PetugasAirlineCollection_NomorPegawai').val();
+        var WargaNegara = $('#DataAirline_PetugasAirlineCollection_WargaNegaraList').val();
+        var Passport = $('#DataAirline_PetugasAirlineCollection_Passport').val();
+        var WargaNegaraName = $('#DataAirline_PetugasAirlineCollection_WargaNegaraList option:selected').text();
+
+        if (Nama == '') {
+            strMessage += 'Silahkan isi nama<br>';
+        }
+
+        if (strMessage != '') {
+            $('#modalAlert').find('.modal-body').html("Silahkan isi beberapa isian berikut : <br><ol>" + strMessage + "</ol>")
+            $('#modalAlert').modal('show');
+            return false;
+        }
+
+
+        var Petugass = GetPetugas();
+
+        Petugass[i].No = No;
+        Petugass[i].Nama = Nama;
+        Petugass[i].NomorPegawai = NomorPegawai;
+        Petugass[i].WargaNegara = WargaNegara;
+        Petugass[i].Passport = Passport;
+
+        $('#DataAirline_PetugasAirlineCollection_PetugasAirline').val(JSON.stringify(Petugass));
+        table.row(i).data(
+            {
+                "No": No,
+                "Nama": Nama,
+                "NomorPegawai": NomorPegawai,
+                "WargaNegara": WargaNegaraName,
+                "Passport": Passport
+            }).draw();
+
+        ResetPetugas();
+        $("#dialogEmp").modal('hide');
+        return false;
+    }
+    function EditPetugas(No) {
+        var Petugass = GetPetugas();
+        var i = No - 1;
+        var Petugas = Petugass[i];
+        $('#DataAirline_PetugasAirlineCollection_No').val(No);
+        $('#DataAirline_PetugasAirlineCollection_Nama').val(Petugas.Nama);
+        $('#DataAirline_PetugasAirlineCollection_NomorPegawai').val(Petugas.NomorPegawai);
+        $('#DataAirline_PetugasAirlineCollection_WargaNegaraList').val(Petugas.WargaNegara);
+        $('#DataAirline_PetugasAirlineCollection_Passport').val(Petugas.Passport);
+        $('#dialogEmp').modal('show');
+        return false;
+    }
+    function DeletePetugas(No) {
+        var Petugass = GetPetugas();
+        var i = No - 1;
+        Petugass.splice(i, 1);
+        $('#tblPetugas').DataTable().row(i).remove().draw(false);
+        while (i < Petugass.length) {
+            Petugass[i].No = i + 1;
+            var data = $('#tblPetugas').DataTable().row(i).data();
+            data.No = Petugass[i].No;
+            $('#tblPetugas').DataTable().row(i).data(data).draw();
+            i++;
+        }
+        if (Petugass == null) {
+            Petugass = new Array();
+        }
+        $('#DataAirline_PetugasAirlineCollection_PetugasAirline').val(JSON.stringify(Petugass));
+        return false;
+    }
+
+    function GetPetugas() {
+        var data = $('#DataAirline_PetugasAirlineCollection_PetugasAirline').val();
+        var dataJson = JSON.parse(data);
+        if (dataJson != null && dataJson.length > 0) {
+            return dataJson;
+        }
+        return null;
+    }
+
+    function ResetPetugas() {
+        $('#DataAirline_PetugasAirlineCollection_No').val('');
+        $('#DataAirline_PetugasAirlineCollection_Nama').val('');
+        $('#DataAirline_PetugasAirlineCollection_NomorPegawai').val('');
+        $('#DataAirline_PetugasAirlineCollection_WargaNegaraList').val('');
+        $('#DataAirline_PetugasAirlineCollection_Passport').val('');
+    }
+
+
+</script>

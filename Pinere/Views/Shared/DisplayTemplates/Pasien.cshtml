@@ -1,0 +1,85 @@
+﻿@using Pinere.Models
+@using Pinere.Helper
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  Pasien
+@Html.HiddenFor(o => o.Id)
+@Html.HiddenFor(o => o.DataAirlineId)
+@Html.HiddenFor(o => o.NamaAirline)
+@Html.HiddenFor(o => o.NomorPenerbangan)
+
+<div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+    <div class="row" style="margin-bottom: 20px; ">
+        <div class="col-md-2" style="text-align:right">
+                 <button type="button" class="btn btn-primary" style="text-align:center;width:100%" data-toggle="collapse" data-target="#dvPasien">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp; Pasien
+                </button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div id="dvPasien" class="">
+        <div class="form-group">
+        <label class="col-md-2 control-label">Nama :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.Nama, new { @class = "form-control input-sm", @placeholder = "Nama", @readonly = "readonly" })
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Tanggal Lahir :</label>
+        <div class="col-md-4">
+             @Html.TextBoxFor(o => o.TanggalLahir, new { @class = "form-control input-sm", @placeholder = "Tanggal Lahir", @Style = "display:inline;width:180px", @readonly = "readonly" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <label class="col-md-2 control-label">Kelamin :</label>
+        <div class="col-md-4">
+            @Html.HiddenFor(o => o.Kelamin)
+            @Html.DropDownListFor(o => o.KelaminList, Model.KelaminList, new { @class = "form-control input-sm", @style = "width:150px;display:inline", @disabled = "disabled" })
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Passport :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.Passport, new { @class = "form-control input-sm", @placeholder = "Passport", @readonly = "readonly" })
+        </div>
+        <label class="col-md-2 control-label">Nomor KTP :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.KTP, new { @class = "form-control input-sm", @placeholder = "Nomor KTP", @readonly = "readonly" })
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Alamat :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.Alamat, new { @class = "form-control input-sm",  @placeholder = "Alamat", @readonly = "readonly" })
+        </div>
+         <label class="col-md-2 control-label">Pekerjaan :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.Pekerjaan, new { @class = "form-control input-sm", @placeholder = "Pekerjaan", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Nomor Telpon :</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(o => o.NomorTelpon, new { @class = "form-control input-sm", @placeholder = "Nomor Telpon", @readonly = "readonly" })
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+    function DocumentReadyPasien() {
+       
+        $("#Pasien_KelaminList").change(function () {
+            $("#Pasien_Kelamin").val($("#Pasien_KelaminList").val());
+        });
+        if ($("#Pasien_Kelamin").val() != "") {
+            $("#Pasien_KelaminList").val($("#Pasien_Kelamin").val());
+        }
+        $("#Pasien_NamaAirline").val($("#DataAirline_NamaAirlineDis").val());
+        $("#Pasien_NomorPenerbangan").val($("#DataAirline_NomorPenerbangan").val());
+        $("#Pasien_DataAirlineId").val($("#DataAirline_Id").val());
+    }
+
+</script>

@@ -1,0 +1,389 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutFluid.cshtml";
+}
+@using Pinere.Models
+@using MICA.Web.Mvc.Enumeration
+@using MICA.Web.Mvc.UI
+@model SearchParameter
+@Html.HiddenFor(o => o.Search)
+
+<div class="bs-component">
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active">Report</li>
+    </ul>
+</div>
+<div class="bs-component" style="margin-bottom: 20px; text-align:center">
+    <h3>Report</h3>
+</div>
+<div class="panel panel-primary" style="border-color:cornflowerblue">
+    <div class="panel-heading" style="padding:5px 15px">
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+                <div class="row" style="margin-bottom: 20px; ">
+                    <div class="col-md-2" style="text-align:right">
+                        <button type="button" class="btn btn-primary" style="text-align:center;width:100%">
+                            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>&nbsp;&nbsp; Filter
+                        </button>
+                    </div>
+                    <div class="col-md-10"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Nama Airline :</label>
+                    <div class="col-md-9">
+                        @Html.HiddenFor(o=>o.NamaAirline)
+                        @Html.TextBoxFor(o => o.NamaAirlineDis, new { @class = "form-control input-sm",@readonly = "readonly", @Style = "width:400px;display:inline", @placeholder = "Nama Airline" })
+                            <button id="btnCariAirline" type="button" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="cari airline" data-original-title="cari airline">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                            <button id="btnHapusAirline" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="hapus airline" data-original-title="hapus airline">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Nomor Penerbangan :</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(o => o.NomorPenerbangan, new { @class = "form-control input-sm", @Style = "width:180px", @placeholder = "Nomor Penerbangan" })
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Tanggal Datang Dari :</label>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(o => o.StartDate, new { @class = "form-control input-sm", @placeholder = "Tanggal Dari", @Style = "display:inline;width:180px" })
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+                    </div>
+                    <label class="col-md-1 control-label">Ke :</label>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(o => o.EndDate, new { @class = "form-control input-sm", @placeholder = "Tanggal Ke", @Style = "display:inline;width:180px" })
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-md-2 control-label">Suspect :</label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(o => o.Suspect, Model.SuspectList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Dirujuk :</label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(o => o.RujukRS, Model.RujukRSList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Hasil Lab :</label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(o => o.HasilLab, Model.HasilLabList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                  <div class="form-group">
+                    <label class="col-md-2 control-label">Kondisi Terakhir :</label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(o => o.Kondisi, Model.KondisiList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <button id="btnSearch" type="button" class="btn btn-info btn-sm" style="width:100px">Search</button>&nbsp;&nbsp;
+                <button id="btnClear" type="button" class="btn btn-danger btn-sm" style="width:100px">Clear</button>
+            </div>
+        </div>
+         
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <table id="tblData" class="table table-striped table-bordered dt-responsive input-sm" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                NAMA
+                            </th>
+                            <th>
+                                TGL LAHIR
+                            </th>
+                              <th>
+                                MASKAPAI
+                            </th>
+                            <th>
+                                TGL DATANG
+                            </th>
+                            <th>
+                                NO<br />PENERBANGAN
+                            </th>
+                            <th>
+                                SUSPECT
+                            </th>
+                            <th>
+                                RUJUK RS
+                            </th>
+                            <th>
+                                RESIKO
+                            </th>
+                            <th>
+                                HASIL LAB
+                            </th>
+                            <th>
+                                KONDISI
+                            </th>
+                            <th>
+                                AKSI
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                             <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                              <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dialogAirline" tabindex="-1" role="dialog" aria-labelledby="dialogAirline-label" aria-hidden="true">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="dialogAirline-label">Daftar Airline</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblAirline" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                             <th>
+                                Id
+                            </th>
+                            <th>
+                                Maskapai
+                            </th>
+                            <th>
+                                Negara
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                             <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#StartDate').datepicker({
+                dateFormat: 'dd-M-yy',
+                changeMonth: true,
+                changeYear: true,
+                buttonText: "Select date"
+            });
+            $('#EndDate').datepicker({
+                dateFormat: 'dd-M-yy',
+                changeMonth: true,
+                changeYear: true,
+                buttonText: "Select date"
+            });
+            $("#btnCariAirline").click(function () {
+                $('#dialogAirline').modal('show');
+            });
+            var tablea = $('#tblAirline').DataTable({
+                "bInfo": true,
+                "bServerSide": true,
+                "sAjaxSource": '@Url.Action("GetMaskapai")',
+            "aoColumns":
+            [
+                { "mData": "Id" },
+                { "mData": "Name" },
+                { "mData": "Country" }
+            ],
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                $.ajax({
+                    dataType: 'json',
+                    global: false,
+                    type: "GET",
+                    url: sSource,
+                    data: aoData,
+                    beforeSend: function () {
+                        $("#loadingMaskapaiIndicator").show();
+                    },
+                    complete: function () {
+                        $("#loadingMaskapaiIndicator").hide();
+                    },
+                    error: function () {
+                        $("#tblAirline > tbody").html("<tr class='odd'><td colspan='6' class='center'>Sorry, we encounter a problem when trying to load department list from the server.</td></tr>");
+                    },
+                    success: fnCallback
+                });
+            }
+        });
+        $('#tblAirline tbody').on('click', 'tr', function () {
+            var data = tablea.row(this).data();
+            $('#NamaAirline').val(data["Id"]);
+            $('#NamaAirlineDis').val(data["Name"]);
+            $("#dialogAirline").modal('hide');
+        });
+        $("#btnHapusAirline").click(function () {
+            $('#NamaAirline').val('');
+            $('#NamaAirlineDis').val('');
+        });
+
+        var tabled = $('#tblData').DataTable({
+            "dom": '<"top"Blr>rtip',
+            "buttons": [
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    }
+                },
+                {
+                    extend: 'print',
+                    text: '<span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;Print',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    }
+                }
+            ],
+           // "lengthChange": false,
+            "bInfo": true,
+            "bPaginate": true,
+            "bFilter": false,
+            "bProcessing": false,
+            "sPaginationType": "full_numbers",
+            "sAjaxSource": '@Url.Action("GetResultData")',
+            "aoColumns": [
+                { "mData": "NamaPasien" },
+                { "mData": "TanggalLahir", "sClass": "text-center" },
+                { "mData": "NamaAirline" },
+                { "mData": "WaktuBerangkat", "sClass": "text-center" },
+                { "mData": "NomorPenerbangan", "sClass": "text-center" },
+                { "mData": "Suspect" },
+                { "mData": "RujukRS" },
+                { "mData": "Resiko" },
+                { "mData": "HasilLab" },
+                { "mData": "Kondisi" },
+                {
+                    "mData": function (source, type, val) {
+                        return "<a class=\"btn btn-success btn-xs\" href='" + source.ActionEdit + "' target='_blank'>View</a>";
+                    }, "sClass": "text-center"
+                }
+            ],
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                aoData.push(
+                    { "name": "search", "value": $('#Search').val() },
+                    { "name": "airline", "value": $('#NamaAirline').val() },
+                    { "name": "nomorPenerbangan", "value": $('#NomorPenerbangan').val() },
+                    { "name": "startDate", "value": $('#StartDate').val() },
+                    { "name": "endDate", "value": $('#EndDate').val() },
+                    { "name": "suspect", "value": $('#Suspect').val() },
+                    { "name": "rujukRS", "value": $('#RujukRS').val() },
+                    { "name": "hasilLab", "value": $('#HasilLab').val() },
+                    { "name": "kondisi", "value": $('#Kondisi').val() }
+                );
+                $.ajax({
+                    dataType: 'json',
+                    global: false,
+                    type: "GET",
+                    url: sSource,
+                    data: aoData,
+                    beforeSend: function () {
+                        $("#loadingResult").show();
+                    },
+                    complete: function () {
+                        $("#loadingResult").hide();
+                        //$("input[type=button], button").button();
+                    },
+                    error: function () {
+                        $("#tblData > tbody").html("<tr class='odd'><td colspan='12' class='center'>Sorry, we encounter a problem when trying to search career resume from the server.</td></tr>");
+                    },
+                    success: fnCallback
+                });
+            }
+        });
+            //tabled.buttons().container()
+            //    .appendTo('#tblData_wrapper .col-sm-6:eq(0)');
+            $("#btnClear").click(function () {
+                $('#NamaAirline').val('');
+                $('#NamaAirlineDis').val('');
+                $('#NomorPenerbangan').val('');
+                $("#StartDate").val('');
+                $("#EndDate").val('');
+                $("#Suspect").val('');
+                $("#RujukRS").val('');
+                $("#HasilLab").val('');
+                $("#Kondisi").val('');
+            });
+        $("#btnSearch").click(function () {
+            $('#Search').val('True');
+            tabled.ajax.reload();
+        });
+
+    });
+    </script>
+}

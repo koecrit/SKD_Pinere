@@ -1,0 +1,141 @@
+﻿@model Pinere.Models.PinereDataModel
+
+@using (Html.BeginForm("Submit", "Litbang", FormMethod.Post, new { @id = "SubmitForm", @enctype = "multipart/form-data" }))
+{
+    
+<div class="bs-component">
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active">Input</li>
+    </ul>
+</div>
+    <div class="bs-component" style="margin-bottom: 20px; text-align:center">
+    <h3>Input Sampel Data</h3>
+</div>
+<div class="panel panel-primary" style="border-color:cornflowerblue">
+    <div class="panel-heading" style="padding:5px 15px">
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.DisplayFor(o => o.DataAirline)
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="border-color:cornflowerblue">
+    <div class="panel-heading" style="padding:5px 15px">
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.DisplayFor(o => o.Pasien)
+            @Html.DisplayFor(o => o.KKP)
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="border-color:cornflowerblue">
+    <div class="panel-heading" style="padding:5px 15px">
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.DisplayFor(o => o.Sampel)
+        </div>   
+    </div>
+</div>
+    <div class="panel panel-primary" style="border-color:cornflowerblue">
+    <div class="panel-heading" style="padding:5px 15px">
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.EditorFor(o => o.Litbang)
+        </div>
+        <div class="row" >
+        <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <button id="btnSubmit" type="button" class="btn btn-info" style="width:150px;">Submit</button>
+                <button id="btnCancel" type="button" class="btn btn-danger" style="width:150px;">Cancel</button>
+            </div>
+        <div class="col-md-4"></div>
+        </div>    
+    </div>
+</div>
+<div class="modal fade" id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="modalAlert-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modalAlert-label">Input Salah</h4>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalConfirmation-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modalConfirmation-label">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnOK" type="button" class="btn btn-info">YES</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/autonumeric")
+    @Scripts.Render("~/bundles/ajaxfileupload")
+    @Scripts.Render("~/bundles/jquerywatermark")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@ViewBag.LitbangData' != "0") {
+                $("a#aLitbang").html("Data Sampel Pasien <span class=\"badge\">@ViewBag.LitbangData</span>");
+           }
+            DocumentReadyDataAirline();
+            DocumentReadyPasien();
+            DocumentReadyKKP();
+            DocumentReadySampel();
+            DocumentReadyLitbang();
+            $("#btnOK").click(function () {
+                $('#modalConfirmation').modal('hide');
+                document.getElementById('SubmitForm').submit();
+            });
+            $("#btnSubmit").click(function () {
+                ExecuteForm();
+            });
+            $("#btnCancel").click(function () {
+                window.close();
+            });
+        });
+        function ExecuteForm() {
+            var strMessage = '';
+
+            var TanggalPeriksaLab = $("#Litbang_TanggalPeriksaLab").val();
+
+            if (TanggalPeriksaLab == '') {
+                strMessage += 'Silahkan isi tanggal periksa lab.<br>';
+            }
+
+
+            if (strMessage != '')
+            {
+                $('#modalAlert').find('.modal-body').html(strMessage)
+                $('#modalAlert').modal('show');
+                return false;
+            }
+            $('#modalConfirmation').find('.modal-body').html("Apakah anda yakin akan input data lab?")
+            $('#modalConfirmation').modal('show');
+            return false;
+        }
+    </script>
+}

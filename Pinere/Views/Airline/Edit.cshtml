@@ -1,0 +1,113 @@
+﻿@model Pinere.Models.PinereDataModel
+
+@using (Html.BeginForm("Submit", "Airline", FormMethod.Post, new { @id = "SubmitForm", @enctype = "multipart/form-data" }))
+{
+    <div class="bs-component">
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Edit</li>
+        </ul>
+    </div>
+     <div class="bs-component" style="margin-bottom: 20px; text-align:center">
+        <h3>Input Data Airline</h3>
+    </div>
+    <div class="panel panel-primary" style="border-color:cornflowerblue">
+        <div class="panel-heading" style="padding:5px 15px">
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                @Html.EditorFor(o => o.DataAirline)
+            </div>
+            <div class="row" style="padding:10px">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-center">
+                    <button id="btnSubmit" type="button" class="btn btn-info " style="width:100%">U P D A T E</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="modalAlert-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modalAlert-label">Input Salah</h4>
+            </div>
+            <div class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalConfirmation-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modalConfirmation-label">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnOK" type="button" class="btn btn-info">YES</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/autonumeric")
+    @Scripts.Render("~/bundles/ajaxfileupload")
+    @Scripts.Render("~/bundles/jquerywatermark")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            DocumentReadyDataAirline();
+            $("#btnOK").click(function () {
+                $('#modalConfirmation').modal('hide');
+                document.getElementById('SubmitForm').submit();
+            });
+            $("#btnSubmit").click(function () {
+                ExecuteForm();
+            });
+        });
+        function ExecuteForm() {
+            var strMessage = '';
+
+            var NamaAirline = $("#DataAirline_NamaAirline").val();
+            var NomorPenerbangan = $("#DataAirline_NomorPenerbangan").val();
+            var PenumpangSakit = $("#DataAirline_PenumpangSakit").val();
+            var GenDec = $("#DataAirline_UFGenDec").val().replace(/\\/g, '/').replace(/.*\//, '');
+
+            if (NamaAirline == '') {
+                strMessage += 'Silahkan isi nama airline.<br>';
+            }
+            if (NomorPenerbangan == '') {
+                strMessage += 'Silahkan isi nomor penerbangan.<br>';
+            }
+            if (PenumpangSakit == "0") {
+                strMessage += 'Silahkan pilih apakah ada penumpang sakit?.<br>';
+            }
+            //if (GenDec == ''){
+            //    strMessage += 'Silahkan upload form GenDec.<br>';
+            //}
+
+
+            if (strMessage != '')
+            {
+                $('#modalAlert').find('.modal-body').html(strMessage)
+                $('#modalAlert').modal('show');
+                return false;
+            }
+            $('#modalConfirmation').find('.modal-body').html("Apakah anda yakin akan update Data Airline?")
+            $('#modalConfirmation').modal('show');
+            return false;
+        }
+    </script>
+}

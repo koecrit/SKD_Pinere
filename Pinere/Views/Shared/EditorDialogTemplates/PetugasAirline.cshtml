@@ -1,0 +1,36 @@
+﻿@using Pinere.Models
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  DataAirline
+@Html.HiddenFor(o => o.PetugasAirlineCollection.No)
+<div class="form-horizontal">
+     <div class="form-group">
+        <label class="col-md-2 control-label">Nama :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.PetugasAirlineCollection.Nama, new { @class = "form-control input-sm", @placeholder = "Nama" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Nomor Pegawai :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.PetugasAirlineCollection.NomorPegawai, new { @class = "form-control input-sm", @placeholder = "Nomor Pegawai" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Warga Negara :</label>
+        <div class="col-md-9">
+            @Html.HiddenFor(o=>o.PetugasAirlineCollection.WargaNegara)
+            @Html.DropDownListFor(o => o.PetugasAirlineCollection.WargaNegaraList, Model.PetugasAirlineCollection.WargaNegaraList, new { @class = "form-control input-sm", @style = "width:250px;display:inline;" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Passport :</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.PetugasAirlineCollection.Passport, new { @class = "form-control input-sm", @placeholder = "Passport" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

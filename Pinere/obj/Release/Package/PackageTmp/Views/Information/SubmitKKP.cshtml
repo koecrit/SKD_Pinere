@@ -1,0 +1,30 @@
+﻿@using MICA.Web.Mvc
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="alert alert-success" role="alert">
+            <h4>
+                <span class="glyphicon glyphicon-ok-sign logo"></span> Sukses
+            </h4>
+            <br />
+            <p>
+                Data Pasien sudah tersimpan di sistem.<br /><br />
+                 <a href="/Pinere/KKP/Input?DataAirlineId=@ViewBag.MainId" class="btn btn-warning btn-sm">Tambah pasien untuk penerbangan yang sama</a><br /><br />
+            </p>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/autonumeric")
+    @Scripts.Render("~/bundles/ajaxfileupload")
+    @Scripts.Render("~/bundles/jquerywatermark")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@ViewBag.KKPData' != "0") {
+                $("a#aKKP1").html("Data Airline <span class=\"badge\">@ViewBag.KKPData</span>");
+            }
+        });
+    </script>
+}

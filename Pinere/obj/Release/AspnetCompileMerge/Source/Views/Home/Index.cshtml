@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "SKD Pinere";
+}
+
+<div class="row" style="padding-top:20px"></div>
+<div class="jumbotron" style="text-align:center;">
+    <h1></h1>
+    <p class="lead">Selamat datang di Sistem Kewaspadaan Dini Penyakit Infeksi New-Emerging dan Re-Emerging <br />(SKD PINERE).</p>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("airline"))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Input Data Airline</h2>
+                <p>
+                    Melalui sistem ini, pihak kedatangan Airline akan merecord Data Airline serta upload Form General Declaration
+                </p>
+                <p><a class="btn btn-primary" href="~/Airline/Input/">Input Data Airline &raquo;</a></p>
+        </div>
+            <div class="col-md-6">
+                <h2>Lihat History Data</h2>
+                <p>Data Airline yang sudah tersimpan dapat dilihat kembali melalui menu History dan melakukan Edit jika diperlukan.</p>
+                <p><a class="btn btn-primary" href="~/Airline/Tracking/">Data Airline History &raquo;</a></p>
+            </div>
+        </div>
+    }
+    else if (User.IsInRole("kkp"))
+    {
+         <div class="row">
+            <div class="col-md-4">
+                <h2>Input Data dari Ailine</h2>
+                <p>
+                    Input data pasien berdasar data airline.
+                </p>
+                @if (ViewBag.KKPData != 0)
+                {
+                    <p><a class="btn btn-danger" href="~/KKP/Task/">Ada <span class="badge">@ViewBag.KKPData</span> data Airlines</a></p>
+                }else
+	            {
+                    <p><a class="btn btn-success" href="#">Tidak ada data Airline &raquo;</a></p>
+                }
+
+            </div>
+             <div class="col-md-4">
+                <h2>Input Data Baru</h2>
+                <p>Input data baru dari mulai data airline dan data pasien.</p>
+                <p><a class="btn btn-primary" href="~/KKP/NewEntry/">Input Pasien &raquo;</a></p>
+            </div>
+              <div class="col-md-4">
+                <h2>Lihat Data Pasien</h2>
+                <p>Melihat Data Pasien yang sudah tersimpan.</p>
+                <p><a class="btn btn-primary" href="~/KKP/Tracking/">Lihat Pasien &raquo;</a></p>
+            </div>
+        </div>
+    }
+    else if (User.IsInRole("rs"))
+    {
+         @*<div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Input Data Sampel</h2>
+                <p>
+                    Melalui sistem ini, pihak RS akan melakukan input data sampel jika ada Notifikasi baru dari pihak KKP jika ada pasien yang sakit dan di rujuk di RS tersebut.
+                </p>
+                <p><a class="btn btn-danger" href="~/RS/Task/">Data Pasien Baru <span class="badge">@ViewBag.RSData</span></a></p>
+                
+        </div>
+        </div>*@
+    }
+    else if (User.IsInRole("balitbang"))
+    {
+         <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Input Data Lab</h2>
+                <p>
+                    Melalui sistem ini, pihak Balitbangkes akan melakukan input data hasil lab jika ada Notifikasi baru dari pihak Rumah sakit yang telah menginput data sampel.
+                </p>
+                <p><a class="btn btn-danger" href="~/Litbang/Task/">Data Sampel Pasien Baru <span class="badge">@ViewBag.LitbangData</span></a></p>
+                
+        </div>
+        </div>
+    }
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ('@ViewBag.KKPData' != "0") {
+                $("a#aKKP1").html("Data Airline <span class=\"badge\">@ViewBag.KKPData</span>");
+            }
+           @* if ('@ViewBag.RSData' != "0") {
+                $("a#aRS").html("Data Pasien <span class=\"badge\">@ViewBag.RSData</span>");
+            }*@
+            if ('@ViewBag.LitbangData' != "0") {
+                $("a#aLitbang").html("Data Sampel Pasien <span class=\"badge\">@ViewBag.LitbangData</span>");
+            }
+        });
+    </script>
+}

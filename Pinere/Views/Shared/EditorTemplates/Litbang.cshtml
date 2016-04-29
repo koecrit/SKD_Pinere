@@ -1,0 +1,123 @@
+﻿@using Pinere.Models
+@using Pinere.Helper
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  Litbang
+@Html.HiddenFor(o => o.Id)
+@Html.HiddenFor(o => o.PasienId)
+
+<div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+    <div class="row" style="margin-bottom: 20px; ">
+        <div class="col-md-2" style="text-align:right">
+                <button type="button" class="btn btn-primary" style="text-align:center;width:100%">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;&nbsp; Hasil Lab
+                </button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Terima Sampel :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalTerimaSampel, new { @class = "form-control input-sm", @placeholder = "Tanggal Terima Sampel", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Tanggal Periksa Lab :</label>
+        <div class="col-md-4">
+              @Html.TextBoxFor(o => o.TanggalPeriksaLab, new { @class = "form-control input-sm", @placeholder = "Tanggal Periksa Lab", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Hasil Lab :</label>
+        <div class="col-md-4">
+            @Html.HiddenFor(o=>o.HasilLab)
+            @for (int i = 0; i < Model.HasilLabOption.Count; i++)
+            {
+                <div class="checkbox">
+                  <label style="padding-left:0px">
+                    @Html.RadioButton("rbHasilLab",Model.HasilLabOption[i].Value,new{@id=Model.HasilLabOption[i].Id,@onclick="return onClickRadio('"+Model.HasilLabOption[i].Id+"','"+Model.HasilLabOption[i].Value+"')"})
+                    @Model.HasilLabOption[i].Text
+                  </label>
+                </div>
+            }
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Keterangan :</label>
+        <div class="col-md-8">
+              @Html.TextBoxFor(o => o.Keterangan, new { @class = "form-control input-sm", @placeholder = "Keterangan" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Upload Hasil Lab:</label>
+        <div class="col-md-8">
+                <div id="dvGenDec">
+                    @Html.HiddenFor(o => o.Attachment)
+                    @Html.HiddenFor(o => o.AttachmentLink)
+                    <input id="Litbang_UFGenDec" class="input-sm" name="Litbang_UFGenDec" type="file">
+                </div>
+                <label id="UFGenDecLabel" class="form-control input-sm" style="display:inline;"></label>
+                <button id="btnResetGenDec" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="reset hasil lab" data-original-title="reset hasil lab">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function DocumentReadyLitbang() {
+        $('#Litbang_TanggalPeriksaLab').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        $('#Litbang_TanggalTerimaSampel').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        if ($('#Litbang_HasilLab').val() != "") {
+            $('#RB' + $('#Litbang_HasilLab').val()).prop("checked", true);
+        }
+        $("#Litbang_UFGenDec").fileinput({
+            showUpload: false,
+            mainClass: 'input-group-sm',
+            dropZoneEnabled: false,
+            showPreview: false,
+        });
+        if ($("#Litbang_Attachment").val() != '') {
+            $("#UFGenDecLabel").html($("#Litbang_AttachmentLink").val());
+            $("#UFGenDecLabel").show();
+            $("#btnResetGenDec").show();
+            $('#dvGenDec').hide();
+        } else {
+            $("#UFGenDecLabel").hide();
+            $("#btnResetGenDec").hide();
+            $('#dvGenDec').show();
+        }
+        $("#btnResetGenDec").click(function () {
+            $("#Litbang_FormGendec").val('');
+            $("#UFGenDecLabel").html('');
+            $("#UFGenDecLabel").hide();
+            $("#btnResetGenDec").hide();
+            $('#dvGenDec').show();
+        });
+        $("#Litbang_UFGenDec").change(function () {
+            $("#Litbang_Attachment").val($("#Litbang_UFGenDec").val().replace(/\\/g, '/').replace(/.*\//, ''));
+        });
+    }
+    function onClickRadio(id, value)
+    {
+        $('#Litbang_HasilLab').val($("input:radio[name='Litbang.rbHasilLab']:checked").val());
+    }
+
+</script>

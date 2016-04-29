@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Pinere" Class="PinereDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=PC1202018\SQLEXPRESS;Initial Catalog=Pinere;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PinereConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_kode_negara" Member="tbl_kode_negaras">
+    <Type Name="tbl_kode_negara">
+      <Column Name="Kode_Negara" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Negara" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_tujuan" Member="tbl_tujuans">
+    <Type Name="tbl_tujuan">
+      <Column Name="Kode" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tujuan" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_hasil_diagnosa" Member="tbl_hasil_diagnosas">
+    <Type Name="tbl_hasil_diagnosa">
+      <Column Name="Kode" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Hasil" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_user" Member="tbl_users">
+    <Type Name="tbl_user">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="long_name" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="responsible" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_tingkat_resiko" Member="tbl_tingkat_resikos">
+    <Type Name="tbl_tingkat_resiko">
+      <Column Name="KODE" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RESIKO" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.IsAuthorizedUser" Method="IsAuthorizedUser">
+    <Parameter Name="UserId" Parameter="userId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="IsAuthorizedUserResult">
+      <Column Name="IsAuthorized" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DeletePetugasAirline" Method="DeletePetugasAirline">
+    <Parameter Name="Id_Data_Airline" Parameter="id_Data_Airline" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertPetugasAirline" Method="InsertPetugasAirline">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id_Data_Airline" Parameter="id_Data_Airline" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nama" Parameter="nama" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Nomor_Pegawai" Parameter="nomor_Pegawai" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Warga_Negara" Parameter="warga_Negara" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Passport" Parameter="passport" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Kelamin" Parameter="kelamin" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="CreatedDate" Parameter="createdDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetPetugasAirline" Method="GetPetugasAirline">
+    <Parameter Name="Id_Data_Airline" Parameter="id_Data_Airline" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetPetugasAirlineResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NO" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Id_Data_Airline" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nama" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nomor_Pegawai" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Warga_Negara" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Passport" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Kelamin" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Negara" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetKota" Method="GetKota">
+    <ElementType Name="GetKotaResult">
+      <Column Name="Kode_Kota" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Nama_Kota" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Negara" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMaskapai" Method="GetMaskapai">
+    <ElementType Name="GetMaskapaiResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maskapai" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Negara" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDataAirlineList" Method="GetDataAirlineList">
+    <ElementType Name="GetDataAirlineListResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nama_Airline" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nama_Airline_Dis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nomor_Penerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Waktu_Berangkat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Kota_Asal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Kota_Asal_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Kota_Tujuan" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Kota_Tujuan_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Jumlah_Penumpang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Penumpang_Sakit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Penumpang_Sakit_Dis" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Form_Gendec" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nama_Petugas" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Nomor_Petugas" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDataAirlineForKKP" Method="GetDataAirlineForKKP">
+    <ElementType Name="GetDataAirlineForKKPResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nama_Airline" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nama_Airline_Dis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nomor_Penerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Waktu_Berangkat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Kota_Asal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Kota_Asal_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Kota_Tujuan" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Kota_Tujuan_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Jumlah_Penumpang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Penumpang_Sakit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Penumpang_Sakit_Dis" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Form_Gendec" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nama_Petugas" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Nomor_Petugas" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KKP_Flag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetPasien" Method="GetPasien">
+    <Parameter Name="PasienId" Parameter="pasienId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetPasienResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DataAirlineId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nama" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="TanggalLahir" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Kelamin" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Pekerjaan" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Passport" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KTP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Alamat" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="NamaAirline" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="NomorPenerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NomorTelpon" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertPasien" Method="InsertPasien">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DataAirlineId" Parameter="dataAirlineId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nama" Parameter="nama" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="TanggalLahir" Parameter="tanggalLahir" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Kelamin" Parameter="kelamin" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Pekerjaan" Parameter="pekerjaan" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Passport" Parameter="passport" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="KTP" Parameter="kTP" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Alamat" Parameter="alamat" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="NamaAirline" Parameter="namaAirline" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="NomorPenerbangan" Parameter="nomorPenerbangan" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NomorTelpon" Parameter="nomorTelpon" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CreatedDate" Parameter="createdDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="InsertPasienResult">
+      <Column Name="PasienId" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UpdateDataAirlineForKKP" Method="UpdateDataAirlineForKKP">
+    <Parameter Name="DataAirlineId" Parameter="dataAirlineId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetTotalDataAirlineForKKP" Method="GetTotalDataAirlineForKKP">
+    <ElementType Name="GetTotalDataAirlineForKKPResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UpdateRSFlag" Method="UpdateRSFlag">
+    <Parameter Name="KKPId" Parameter="kKPId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetPasienList" Method="GetPasienList">
+    <ElementType Name="GetPasienListResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KKPId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AirlineId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NamaAirline" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="NomorPenerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NamaPasien" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="TanggalLahir" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Diagnosa" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Rujuk_RS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Rujuk_RS_Dis" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTotalDataPasienForLitbang" Method="GetTotalDataPasienForLitbang">
+    <ElementType Name="GetTotalDataPasienForLitbangResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UpdateLitbangFlag" Method="UpdateLitbangFlag">
+    <Parameter Name="SampelId" Parameter="sampelId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetPasienListForLitbang" Method="GetPasienListForLitbang">
+    <ElementType Name="GetPasienListForLitbangResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KKPId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LitbangId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AirlineId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NamaAirline" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="NomorPenerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NamaPasien" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="TanggalLahir" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Diagnosa" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Rujuk_RS" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Rujuk_RS_Dis" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="RS_Flag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Litbang_Flag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetRS" Method="GetRS">
+    <ElementType Name="GetRSResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nama" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Alamat" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetResponsibleByUserName" Method="GetResponsibleByUserName">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Role" Parameter="role" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="GetResponsibleByUserNameResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(800)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetPasienListForRS" Method="GetPasienListForRS">
+    <Parameter Name="RSId" Parameter="rSId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetPasienListForRSResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KKPId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AirlineId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NamaAirline" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NomorPenerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NamaPasien" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="TanggalLahir" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Diagnosa" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Rujuk_RS" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Rujuk_RS_Dis" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="RS_Flag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Hasil_Lab" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NamaRS" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTotalDataPasienForRS" Method="GetTotalDataPasienForRS">
+    <Parameter Name="RSId" Parameter="rSId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTotalDataPasienForRSResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDataAirline" Method="GetDataAirline">
+    <Parameter Name="DataAirlineId" Parameter="dataAirlineId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDataAirlineResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nama_Airline" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nama_Airline_Dis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nomor_Penerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Waktu_Berangkat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Kota_Asal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Kota_Asal_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Kota_Tujuan" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Kota_Tujuan_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Jumlah_Penumpang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Penumpang_Sakit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Penumpang_Sakit_Dis" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Form_Gendec" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nama_Petugas" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Nomor_Petugas" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KKP_Flag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Jumlah_Sakit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertDataAirline" Method="InsertDataAirline">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nama_Airline" Parameter="nama_Airline" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nomor_Penerbangan" Parameter="nomor_Penerbangan" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Waktu_Berangkat" Parameter="waktu_Berangkat" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Kota_Asal" Parameter="kota_Asal" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Kota_Tujuan" Parameter="kota_Tujuan" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Jumlah_Penumpang" Parameter="jumlah_Penumpang" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Penumpang_Sakit" Parameter="penumpang_Sakit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Form_Gendec" Parameter="form_Gendec" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="CreatedDate" Parameter="createdDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NamaPetugas" Parameter="namaPetugas" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="NomorPetugas" Parameter="nomorPetugas" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="JumlahSakit" Parameter="jumlahSakit" Type="System.Int32" DbType="Int" />
+    <ElementType Name="InsertDataAirlineResult">
+      <Column Name="DataAirlineId" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDataLitbang" Method="GetDataLitbang">
+    <Parameter Name="PasienId" Parameter="pasienId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDataLitbangResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasienId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tanggal_periksa_lab" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hasil_lab" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Keterangan" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Attachment" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tanggal_terima_sampel" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertDataLitbang" Method="InsertDataLitbang">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PasienId" Parameter="pasienId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tanggal_periksa_lab" Parameter="tanggal_periksa_lab" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Hasil_lab" Parameter="hasil_lab" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Keterangan" Parameter="keterangan" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Attachment" Parameter="attachment" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="CreatedDate" Parameter="createdDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TanggalTerimaSampel" Parameter="tanggalTerimaSampel" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetKriteriaBasedOnResiko" Method="GetKriteriaBasedOnResiko">
+    <Parameter Name="Category" Parameter="category" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="KodeResiko" Parameter="kodeResiko" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="GetKriteriaBasedOnResikoResult">
+      <Column Name="kriteria" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTindakanBasedOnResiko" Method="GetTindakanBasedOnResiko">
+    <Parameter Name="Category" Parameter="category" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="KodeResiko" Parameter="kodeResiko" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="GetTindakanBasedOnResikoResult">
+      <Column Name="tindakan" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDataKKP" Method="GetDataKKP">
+    <Parameter Name="KKPId" Parameter="kKPId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDataKKPResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasienId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Suhu" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Tekanan_Darah1" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Tekanan_Darah2" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Pernapasan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nadi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tanda_Gejala" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Visit_Liberia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Guinea" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Sierra" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Mali" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Kongo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Perancis" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Italia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Jordania" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Qatar" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Arab" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Tunisia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Inggris" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_UEA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Other" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visit_Other_Text" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Durasi_Start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Durasi_End" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tujuan_Perjalanan" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Tujuan_Perjalanan_Other" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Riwayat_Paparan" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Hasil_Diagnosa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Hasil_Diagnosa_Other" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Rujuk_RS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IdRS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NamaRS" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Surat_Rujukan" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Tingkat_Risiko" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Pemeriksaan_fisik" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tindakan_medis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pemeriksaan_lab" Type="System.String" DbType="VarChar(800)" CanBeNull="true" />
+      <Column Name="Hasil_pemeriksaan_lab" Type="System.String" DbType="VarChar(800)" CanBeNull="true" />
+      <Column Name="Pengobatan" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Kriteria_Resiko" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tindakan_Resiko" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertKKP" Method="InsertKKP">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PasienId" Parameter="pasienId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Suhu" Parameter="suhu" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="Tekanan_Darah1" Parameter="tekanan_Darah1" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="Tekanan_Darah2" Parameter="tekanan_Darah2" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="Pernapasan" Parameter="pernapasan" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nadi" Parameter="nadi" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tanda_Gejala" Parameter="tanda_Gejala" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Visit_Liberia" Parameter="visit_Liberia" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Guinea" Parameter="visit_Guinea" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Sierra" Parameter="visit_Sierra" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Mali" Parameter="visit_Mali" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Kongo" Parameter="visit_Kongo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Perancis" Parameter="visit_Perancis" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Italia" Parameter="visit_Italia" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Jordania" Parameter="visit_Jordania" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Qatar" Parameter="visit_Qatar" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Arab" Parameter="visit_Arab" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Tunisia" Parameter="visit_Tunisia" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Inggris" Parameter="visit_Inggris" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_UEA" Parameter="visit_UEA" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Other" Parameter="visit_Other" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Visit_Other_Text" Parameter="visit_Other_Text" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Durasi_Start" Parameter="durasi_Start" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Durasi_End" Parameter="durasi_End" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Tujuan_Perjalanan" Parameter="tujuan_Perjalanan" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Tujuan_Perjalanan_Other" Parameter="tujuan_Perjalanan_Other" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Riwayat_Paparan" Parameter="riwayat_Paparan" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Hasil_Diagnosa" Parameter="hasil_Diagnosa" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Hasil_Diagnosa_Other" Parameter="hasil_Diagnosa_Other" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Rujuk_RS" Parameter="rujuk_RS" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="IdRS" Parameter="idRS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SuratRujukan" Parameter="suratRujukan" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="TingkatRisiko" Parameter="tingkatRisiko" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="PemeriksaanFisik" Parameter="pemeriksaanFisik" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TindakanMedis" Parameter="tindakanMedis" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="PemeriksaanLab" Parameter="pemeriksaanLab" Type="System.String" DbType="VarChar(800)" />
+    <Parameter Name="HasilPemeriksaanLab" Parameter="hasilPemeriksaanLab" Type="System.String" DbType="VarChar(800)" />
+    <Parameter Name="Pengobatan" Parameter="pengobatan" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="KriteriaResiko" Parameter="kriteriaResiko" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TindakanResiko" Parameter="tindakanResiko" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetEmailByNameAndResp" Method="GetEmailByNameAndResp">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Resp" Parameter="resp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Role" Parameter="role" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="GetEmailByNameAndRespResult">
+      <Column Name="Email" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDataSampel" Method="GetDataSampel">
+    <Parameter Name="PasienId" Parameter="pasienId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDataSampelResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasienId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tanggal_ambil_sampel" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Jenis_spesimen" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Jenis_pemeriksaan_lab" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Tanggal_kirim_sampel" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tanggal_keluar_rs" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Kondisi" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertDataSampel" Method="InsertDataSampel">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PasienId" Parameter="pasienId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tanggal_ambil_sampel" Parameter="tanggal_ambil_sampel" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Jenis_spesimen" Parameter="jenis_spesimen" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Jenis_pemeriksaan_lab" Parameter="jenis_pemeriksaan_lab" Type="System.String" DbType="VarChar(512)" />
+    <Parameter Name="Tanggal_kirim_sampel" Parameter="tanggal_kirim_sampel" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedDate" Parameter="createdDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TanggalKeluarRS" Parameter="tanggalKeluarRS" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Kondisi" Parameter="kondisi" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetPasienListReport" Method="GetPasienListReport">
+    <ElementType Name="GetPasienListReportResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KKPId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AirlineId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NamaAirline" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NomorPenerbangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TanggalDatang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NamaPasien" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="TanggalLahir" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hasil_Diagnosa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DiagnosaDis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Rujuk_RS" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Rujuk_RS_Dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="RS_Flag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Hasil_Lab" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Hasil_Lab_Dis" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NamaRS" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="tingkat_risiko" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="tingkat_risiko_dis" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="Kondisi" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Kondisi_Dis" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

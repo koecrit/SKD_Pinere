@@ -1,0 +1,26 @@
+﻿@using MICA.Web.Mvc
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="alert alert-success" role="alert">
+            <h4>
+                <span class="glyphicon glyphicon-ok-sign logo"></span> Sukses
+            </h4>
+            <br />
+            <p>
+                Data sudah tersimpan di sistem
+            </p>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@ViewBag.LitbangData' != "0") {
+                $("a#aLitbang").html("Data Sampel Pasien <span class=\"badge\">@ViewBag.LitbangData</span>");
+            }
+        });
+    </script>
+}

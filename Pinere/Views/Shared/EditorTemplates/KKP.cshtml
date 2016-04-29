@@ -1,0 +1,672 @@
+﻿@using Pinere.Models
+@using Pinere.Helper
+@using MICA.Web.Mvc.UI
+@using MICA.Web.Mvc.Enumeration
+@model  KKP
+@Html.HiddenFor(o => o.Id)
+
+<div class="form-horizontal" style="padding-right:10px;padding-left:5px">
+    <div class="row" style="margin-bottom: 20px; ">
+        <div class="col-md-2" style="text-align:right">
+                <button type="button" class="btn btn-primary" style="text-align:center;width:100%">
+                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Data Medis
+                </button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div class="row">
+        <label class="col-md-2 control-label text-primary">Tanda Tanda Vital </label>
+        <div class="col-md-10">
+        </div>
+    </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Suhu : </label>
+        <div class="col-md-2">
+            @Html.TextBoxFor(o => o.Suhu, new { @class = "form-control input-sm", @placeholder = "Suhu", @Style = "display:inline;width:100px" })
+            <span class="glyphicon" aria-hidden="true" style="display:inline;color:orangered">&deg;C</span>
+        </div>
+        <label class="col-md-2 control-label">Tekanan Darah : </label>
+          <div class="col-md-2">
+            @Html.TextBoxFor(o => o.TekananDarah1, new { @class = "form-control input-sm", @Style = "display:inline;width:50px" })
+            <span class="glyphicon" aria-hidden="true" style="display:inline;color:orangered">/</span>
+            @Html.TextBoxFor(o => o.TekananDarah2, new { @class = "form-control input-sm", @Style = "display:inline;width:50px" })
+            <span class="glyphicon" aria-hidden="true" style="display:inline;color:orangered">mmHg</span>
+        </div>
+           <div class="col-md-4"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Pernapasan : </label>
+        <div class="col-md-2">
+            @Html.TextBoxFor(o => o.Pernapasan, new { @class = "form-control input-sm", @placeholder = "Pernapasan", @Style = "display:inline;width:100px" })
+            <span class="glyphicon" aria-hidden="true" style="display:inline;color:orangered">x/menit</span>
+        </div>
+        <label class="col-md-2 control-label">Nadi : </label>
+          <div class="col-md-2">
+             @Html.TextBoxFor(o => o.Nadi, new { @class = "form-control input-sm", @placeholder = "Nadi", @Style = "display:inline;width:100px" })
+            <span class="glyphicon" aria-hidden="true" style="display:inline;color:orangered">x/menit</span>
+        </div>
+           <div class="col-md-4"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Tanda dan Gejala </label>
+        <div class="col-md-9">
+            @Html.TextAreaFor(o => o.TandaGejala, new { @class = "form-control input-sm", @placeholder = "Tanda dan Gejala",  @rows = "3" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+      <div class="row">
+        <label class="col-md-2 control-label text-primary">Riwayat Perjalanan </label>
+        <div class="col-md-10">
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label">Negara Tujuan :</label>
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    Ebola
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Liberia",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Liberia','Ebola')"})&nbsp;Liberia
+                        @Html.HiddenFor(o=>o.VisitLiberia)
+                      </label>
+                    </div>
+                      <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Guinea",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Guinea','Ebola')"})&nbsp;Guinea
+                        @Html.HiddenFor(o=>o.VisitGuinea)
+                      </label>
+                    </div>
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Sierra",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Sierra','Ebola')"})&nbsp;Sierra Leone
+                        @Html.HiddenFor(o=>o.VisitSierra)
+                      </label>
+                    </div>
+                     <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Mali",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Mali','Ebola')"})&nbsp;Mali
+                        @Html.HiddenFor(o=>o.VisitMali)
+                      </label>
+                    </div>
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Kongo",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Kongo','Ebola')"})&nbsp;Kongo
+                        @Html.HiddenFor(o=>o.VisitKongo)
+                      </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    Mers-CoV
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Perancis",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Perancis','Mers')"})&nbsp;Perancis
+                        @Html.HiddenFor(o=>o.VisitPerancis)
+                      </label>
+                    </div>
+                      <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Italia",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Italia','Mers')"})&nbsp;Italia
+                        @Html.HiddenFor(o=>o.VisitItalia)
+                      </label>
+                    </div>
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Jordania",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Jordania','Mers')"})&nbsp;Jordania
+                        @Html.HiddenFor(o=>o.VisitJordania)
+                      </label>
+                    </div>
+                     <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Qatar",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Qatar','Mers')"})&nbsp;Qatar
+                        @Html.HiddenFor(o=>o.VisitQatar)
+                      </label>
+                    </div>
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Arab",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Arab','Mers')"})&nbsp;Arab Saudi
+                        @Html.HiddenFor(o=>o.VisitArab)
+                      </label>
+                    </div>
+                     <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Tunisia",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Tunisia','Mers')"})&nbsp;Tunisia
+                        @Html.HiddenFor(o=>o.VisitTunisia)
+                      </label>
+                    </div>
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Inggris",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Inggris','Mers')"})&nbsp;Inggris
+                        @Html.HiddenFor(o=>o.VisitInggris)
+                      </label>
+                    </div>
+                    <div class="checkbox" style="padding-top:0px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="UEA",@onclick=" return OnChangeCheckBoxNegara('chkNegara','UEA','Mers')"})&nbsp;Uni Emirat Arab
+                        @Html.HiddenFor(o=>o.VisitUEA)
+                      </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    Lainnya
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                    <div class="checkbox" style="padding-top:0px;padding-bottom:10px">
+                      <label class="control-label">
+                        @Html.CheckBox("chkNegara", new { @id="Other",@onclick=" return OnChangeCheckBoxNegara('chkNegara','Other','Other')"})&nbsp;Lainnya
+                        @Html.HiddenFor(o=>o.VisitOther)
+                      </label>
+                    </div>
+                    @Html.TextBoxFor(o => o.VisitOtherText, new { @class = "form-control input-sm", @placeholder = "", @style="", @disabled="disabled" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Tanggal : </label>
+        <div class="col-md-3">
+            @Html.TextBoxFor(o => o.DurasiStart, new { @class = "form-control input-sm", @placeholder = "Tanggal", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+        <label class="col-md-2 control-label">Sampai : </label>
+          <div class="col-md-3">
+             @Html.TextBoxFor(o => o.DurasiEnd, new { @class = "form-control input-sm", @placeholder = "Sampai", @Style = "display:inline;width:180px" })
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true" style="display:inline;color:orangered"></span>
+        </div>
+           <div class="col-md-2"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Tujuan Perjalanan:</label>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                    @Html.HiddenFor(o=>o.TujuanPerjalanan)
+                    @for (int i = 0; i < Model.TujuanPerjalananOption.Count; i++)
+                    {
+                         <div class="checkbox" style="padding-top:0px">
+                          <label class="control-label">
+                            @Html.CheckBox("chkTujuan", new { @id=Model.TujuanPerjalananOption[i].Id, @value=Model.TujuanPerjalananOption[i].Value,@onclick=" return OnChangeCheckBoxName('chkTujuan','TujuanPerjalanan','"+Model.TujuanPerjalananOption[i].Id+"','"+Model.TujuanPerjalananOption[i].Value+"')"})&nbsp;@Model.TujuanPerjalananOption[i].Text
+                          </label>
+                        </div>   
+                    }
+                    @Html.TextBoxFor(o => o.TujuanPerjalananOther, new { @class = "form-control input-sm", @placeholder = "", @style="", @disabled="disabled" })
+                </div>
+            </div>
+        </div>
+         <div class="col-md-6"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Riwayat Paparan </label>
+        <div class="col-md-9">
+            @Html.TextAreaFor(o => o.RiwayatPaparan, new { @class = "form-control input-sm", @placeholder = "Riwayat dan Paparan",  @rows = "3" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Diagnosa</label>
+       <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                    @Html.HiddenFor(o=>o.HasilDiagnosa)
+                    @for (int i = 0; i < Model.HasilDiagnosaOption.Count; i++)
+                    {
+                         <div class="checkbox" style="padding-top:0px">
+                          <label class="control-label">
+                            @Html.CheckBox("chkDiagnosa", new { @id=Model.HasilDiagnosaOption[i].Id, @value=Model.HasilDiagnosaOption[i].Value,@onclick=" return OnChangeCheckBoxName('chkDiagnosa','HasilDiagnosa','"+Model.HasilDiagnosaOption[i].Id+"','"+Model.HasilDiagnosaOption[i].Value+"')",@disabled="disabled"})&nbsp;@Model.HasilDiagnosaOption[i].Text
+                          </label>
+                        </div>   
+                    }
+                    @Html.TextBoxFor(o => o.HasilDiagnosaOther, new { @class = "form-control input-sm", @placeholder = "", @style="", @disabled="disabled" })
+                </div>
+            </div>
+        </div>
+         <div class="col-md-6"></div>
+    </div>
+     <div class="form-group" id="dvRisiko" >
+        <label class="col-md-2 control-label">Risiko</label>
+       <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                    @Html.HiddenFor(o=>o.TingkatRisiko)
+                    @for (int i = 0; i < Model.TingkatRisikoList.Count; i++)
+                    {
+                         <div class="checkbox" style="padding-top:0px">
+                          <label class="control-label">
+                            @Html.CheckBox("chkRisiko", new { @id=Model.TingkatRisikoList[i].Id, @value=Model.TingkatRisikoList[i].Value,@onclick=" return OnChangeCheckBoxName('chkRisiko','TingkatRisiko','"+Model.TingkatRisikoList[i].Id+"','"+Model.TingkatRisikoList[i].Value+"')"})&nbsp;@Model.TingkatRisikoList[i].Text
+                          </label>
+                        </div>   
+                    }
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3" style="padding-left:0px;padding-right:0px">
+              <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    Kriteria
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                   <p id="pKriteria" style="display:none"></p>
+                    @Html.TextAreaFor(o => o.KriteriaResiko, new { @class = "form-control input-sm", @placeholder = "Kriteria Resiko",  @rows = "15", @style="display:none" })
+                </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+               <div class="panel panel-primary">
+                <div class="panel-heading" style="padding:3px 15px">
+                    Tindakan
+                </div>
+                <div class="panel-body" style="padding:3px 15px">
+                   <p id="pTindakan" style="display:none"></p>
+                    @Html.TextAreaFor(o => o.TindakanResiko, new { @class = "form-control input-sm", @placeholder = "Tindakan Resiko",  @rows = "15", @style="display:none" })
+                </div>
+            </div>
+         </div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Pemeriksaan Fisik </label>
+        <div class="col-md-9">
+            @Html.TextAreaFor(o => o.PemeriksaanFisik, new { @class = "form-control input-sm", @placeholder = "Pemeriksaan Fisik",  @rows = "3" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Tindakan Medis </label>
+        <div class="col-md-9">
+            @Html.TextAreaFor(o => o.TindakanMedis, new { @class = "form-control input-sm", @placeholder = "Tindakan Medis",  @rows = "3" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+     <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Pemeriksaan Lab</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.PemeriksaanLab, new { @class = "form-control input-sm", @placeholder = "Pemeriksaan Lab"})
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Hasil Periksa Lab</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(o => o.HasilLab, new { @class = "form-control input-sm", @placeholder = "Hasil Pemeriksaan Lab"})
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label text-primary">Pengobatan</label>
+        <div class="col-md-9">
+            @Html.TextAreaFor(o => o.Pengobatan, new { @class = "form-control input-sm", @placeholder = "Pengobatan",  @rows = "3" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="form-group">
+       <label class="col-md-2 control-label text-primary">Rujuk ke RS?</label>
+     <div class="col-md-9">
+            @Html.HiddenFor(o=>o.RujukRS)
+            @Html.DropDownListFor(o => o.RujukRSList, Model.RujukRSList, new { @class = "form-control input-sm", @style = "width:150px;display:inline" })
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+     <div class="form-group" id="dvRS" style="display:none">
+        <label class="col-md-2 control-label">Rumah Sakit Rujukan :</label>
+        <div class="col-md-9">
+            @Html.HiddenFor(o=>o.IdRS)
+            @Html.TextBoxFor(o => o.NamaRS, new { @class = "form-control input-sm",@readonly = "readonly", @Style = "width:400px;display:inline", @placeholder = "Nama Rumah Sakit" })
+             <button id="btnCariRS" type="button" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="cari RS" data-original-title="cari RS">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button id="btnHapusRS" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="hapus RS" data-original-title="hapus RS">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+     <div class="form-group" id="dvRujukan" style="display:none">
+        <label class="col-md-2 control-label">Upload Surat Rujukan:</label>
+        <div class="col-md-9">
+                <div id="dvRujuk">
+                    @Html.HiddenFor(o => o.SuratRujukan)
+                    @Html.HiddenFor(o => o.SuratRujukanLink)
+                    <input id="KKP_UFRujuk" name="KKP_UFRujuk" type="file">
+                </div>
+                <label id="UFRujukLabel" class="form-control input-sm" style="display:inline;"></label>
+                <button id="btnResetRujuk" type="button" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="reset surat rujukan" data-original-title="reset surat rujukan">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+</div>
+<div class="modal fade" id="dialogRS" tabindex="-1" role="dialog" aria-labelledby="dialogRS-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="dialogRS-label">Daftar Rumah Sakit Rujukan</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblRS" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                             <th>
+                                Id
+                            </th>
+                            <th>
+                                Rumah Sakit
+                            </th>
+                            <th>
+                                Alamat
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                             <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function DocumentReadyKKP() {
+        $("#KKP_Suhu").autoNumeric({ mDec: '1', wEmpty: 'zero' });
+        $("#KKP_TekananDarah1").autoNumeric({ mDec: '0', wEmpty: 'zero' });
+        $("#KKP_TekananDarah2").autoNumeric({ mDec: '0', wEmpty: 'zero' });
+        $("#KKP_Pernapasan").autoNumeric({ mDec: '0', wEmpty: 'zero' });
+        $("#KKP_Nadi").autoNumeric({ mDec: '0', wEmpty: 'zero' });
+        $('#KKP_DurasiStart').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        $('#KKP_DurasiEnd').datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            buttonText: "Select date"
+        });
+        if ($("#KKP_RujukRS").val() != "") {
+            $("#KKP_RujukRSList").val($("#KKP_RujukRS").val());
+        }
+        $("#KKP_RujukRSList").change(function () {
+            $("#KKP_RujukRS").val($("#KKP_RujukRSList").val());
+            if ($("#KKP_RujukRSList").val() == "1") {
+                $("#dvRS").show();
+                $("#dvRujukan").show();
+            } else {
+                $("#dvRS").hide();
+                $("#dvRujukan").hide();
+            }
+        });
+        $("#KKP_RujukRSList").trigger("change");
+        $("input:checkbox[name='KKP.chkNegara']").each(function () {
+            if ($("#KKP_Visit" + $(this).attr("id")).val() == "True") {
+                $(this).prop("checked", true);
+                if ($(this).attr("id") == "Other") {
+                    $("#KKP_VisitOtherText").attr("disabled", false);
+                }
+            } else {
+                $(this).prop("checked", false);
+            }
+        });
+        if ($('#KKP_TujuanPerjalanan').val() != "") {
+            $('#TJ_' + $('#KKP_TujuanPerjalanan').val()).prop("checked", true);
+            if ($('#KKP_TujuanPerjalanan').val() == "06OTH") {
+                $("#KKP_TujuanPerjalananOther").attr("disabled", false);
+            }
+        }
+        if ($('#KKP_HasilDiagnosa').val() != "") {
+            $('#HD_' + $('#KKP_HasilDiagnosa').val()).prop("checked", true);
+            if ($('#KKP_HasilDiagnosa').val() == "03OTH") {
+                $("#KKP_HasilDiagnosaOther").attr("disabled", false);
+            }
+            //if ($('#KKP_HasilDiagnosa').val() == "01EBL") {
+            //    $("#dvRisiko").show();
+            //} else {
+            //    $("#dvRisiko").hide();
+            //}
+        }
+        if ($('#KKP_TingkatRisiko').val() != "") {
+            $('#RE_' + $('#KKP_TingkatRisiko').val()).prop("checked", true);
+            OnChangeCheckBoxName('chkRisiko', 'TingkatRisiko', 'RE_' + $('#KKP_TingkatRisiko').val(), $('#KKP_TingkatRisiko').val());
+        }
+        $("#btnCariRS").click(function () {
+            $('#dialogRS').modal('show');
+        });
+        var tablea = $('#tblRS').DataTable({
+            "bInfo": true,
+            "bServerSide": true,
+            "sAjaxSource": '@Url.Action("GetRS")',
+            "aoColumns":
+            [
+                { "mData": "Id" },
+                { "mData": "Nama" },
+                { "mData": "Alamat" }
+            ],
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                $.ajax({
+                    dataType: 'json',
+                    global: false,
+                    type: "GET",
+                    url: sSource,
+                    data: aoData,
+                    beforeSend: function () {
+                        $("#loadingRSIndicator").show();
+                    },
+                    complete: function () {
+                        $("#loadingRSIndicator").hide();
+                    },
+                    error: function () {
+                        $("#tblRS > tbody").html("<tr class='odd'><td colspan='6' class='center'>Sorry, we encounter a problem when trying to load department list from the server.</td></tr>");
+                    },
+                    success: fnCallback
+                });
+            }
+        });
+        $('#tblRS tbody').on('click', 'tr', function () {
+            var data = tablea.row(this).data();
+            $('#KKP_IdRS').val(data["Id"]);
+            $('#KKP_NamaRS').val(data["Nama"]);
+            $("#dialogRS").modal('hide');
+        });
+        $("#btnHapusRS").click(function () {
+            $('#KKP_IdRS').val('0');
+            $('#KKP_NamaRS').val('');
+        });
+
+        $("#KKP_UFRujuk").fileinput({
+            showUpload: false,
+            mainClass: 'input-group-sm',
+            dropZoneEnabled: false,
+            showPreview: false,
+        });
+        if ($("#KKP_SuratRujukan").val() != '') {
+            $("#UFRujukLabel").html($("#KKP_SuratRujukanLink").val());
+            $("#UFRujukLabel").show();
+            $("#btnResetRujuk").show();
+            $('#dvRujuk').hide();
+        } else {
+            $("#UFRujukLabel").hide();
+            $("#btnResetRujuk").hide();
+            $('#dvRujuk').show();
+        }
+        $("#btnResetRujuk").click(function () {
+            $("#KKP_SuratRujukan").val('');
+            $("#UFRujukLabel").html('');
+            $("#UFRujukLabel").hide();
+            $("#btnResetRujuk").hide();
+            $('#dvRujuk').show();
+        });
+        $("#KKP_UFRujuk").change(function () {
+            $("#KKP_SuratRujukan").val($("#KKP_UFRujuk").val().replace(/\\/g, '/').replace(/.*\//, ''));
+        });
+    }
+    function OnChangeCheckBoxName(name, dom, id, value) {
+        // alert(name + "="+dom+"="+id+"="+value);
+        var num = $("input[name='KKP." + name + "']:checked").length;
+        if (num == 0) {
+            $("input[name='KKP." + name + "']").prop("checked", false);
+            $("#KKP_" + dom).val('');
+            if (name == "chkTujuan") {
+                $("#KKP_TujuanPerjalananOther").attr("disabled", true);
+            }
+            if (name == "chkDiagnosa") {
+                $("#KKP_HasilDiagnosaOther").attr("disabled", true);
+            }
+        } else if (num == 1) {
+            if ($('#' + id).prop("checked")) {
+                $('#' + id).prop("checked", true);
+                $("#KKP_" + dom).val(value);
+            } else {
+                $("input[name='KKP." + name + "']").prop("checked", false);
+            }
+        } else if (num > 1) {
+            $("input[name='KKP." + name + "']").prop("checked", false);
+            $('#' + id).prop("checked", true);
+            $("#KKP_" + dom).val(value);
+        }
+
+        if (name == "chkTujuan" && num > 0) {
+            if (value == "06OTH") {
+                $("#KKP_TujuanPerjalananOther").attr("disabled", false);
+            } else {
+                $("#KKP_TujuanPerjalananOther").attr("disabled", true);
+            }
+        }
+        if (name == "chkDiagnosa" && num > 0) {
+            if (value == "03OTH") {
+                $("#KKP_HasilDiagnosaOther").attr("disabled", false);
+            } else {
+                $("#KKP_HasilDiagnosaOther").attr("disabled", true);
+            }
+            //if (value == "01EBL") {
+            //    $("#dvRisiko").show();
+            //} else {
+            //    $("#dvRisiko").hide();
+            //}
+        }
+        if (name == "chkRisiko" && num > 0) {
+            if ($("#KKP_HasilDiagnosa").val() == "01EBL") {
+                $("#pKriteria").show();
+                $("#pTindakan").show();
+                $("#KKP_KriteriaResiko").hide();
+                $("#KKP_TindakanResiko").hide();
+                $("#KKP_KriteriaResiko").val('');
+                $("#KKP_TindakanResiko").val('');
+                $.ajax({
+                    type: "POST",
+                    global: false,
+                    url: '@Url.Action("GetKriteraDanTindakan")',
+                    data: { Cat: $("#KKP_HasilDiagnosa").val(), Resiko: $("#KKP_TingkatRisiko").val() },
+                    success: function (data, status) {
+                        if (data.status) {
+                            $("#pKriteria").html(data.kriteria);
+                            $("#pTindakan").html(data.tindakan);
+                        }
+                    }
+                });
+            } else {
+                $("#pKriteria").hide();
+                $("#pTindakan").hide();
+                $("#KKP_KriteriaResiko").show();
+                $("#KKP_TindakanResiko").show();
+            }
+        } else if (name == "chkRisiko" && num == 0) {
+            $("#pKriteria").hide();
+            $("#pTindakan").hide();
+            $("#KKP_KriteriaResiko").hide();
+            $("#KKP_TindakanResiko").hide();
+            $("#KKP_KriteriaResiko").val('');
+            $("#KKP_TindakanResiko").val('');
+        }
+    }
+    function OnChangeCheckBoxNegara(name, id, type) {
+        var num = $("input[name='KKP." + name + "']:checked").length;
+        if (num == 0) {
+            $("input[name='KKP." + name + "']").prop("checked", false);
+            $("#KKP_VisitOtherText").attr("disabled", true);
+        } else if (num == 1) {
+            if ($('#' + id).prop("checked")) {
+                $('#' + id).prop("checked", true);
+            } else {
+                $("input[name='KKP." + name + "']").prop("checked", false);
+            }
+        } else if (num > 1) {
+            $("input[name='KKP." + name + "']").prop("checked", false);
+            $('#' + id).prop("checked", true);
+        }
+        if ($('#' + id).prop("checked") && id == "Other") {
+            $("#KKP_VisitOtherText").attr("disabled", false);
+        } else {
+            $("#KKP_VisitOtherText").attr("disabled", true);
+        }
+        if (type == "Ebola") {
+            $('#HD_01EBL').prop("checked", true);
+            OnChangeCheckBoxName("chkDiagnosa", 'HasilDiagnosa', 'HD_01EBL', '01EBL');
+        } else if (type == "Mers") {
+            $('#HD_02MRS').prop("checked", true);
+            OnChangeCheckBoxName("chkDiagnosa", 'HasilDiagnosa', 'HD_02MRS', '02MRS');
+        }
+        else if (type == "Other") {
+            $('#HD_03OTH').prop("checked", true);
+            OnChangeCheckBoxName("chkDiagnosa", 'HasilDiagnosa', 'HD_03OTH', '03OTH');
+        }
+        clearResikoSection();
+        setValueCheckNegara(name);
+    }
+    function setValueCheckNegara(name) {
+        $("input:checkbox[name='KKP." + name + "']").each(function () {
+            if (this.checked) {
+                $("#KKP_Visit" + $(this).attr("id")).val(true);
+            } else {
+                $("#KKP_Visit" + $(this).attr("id")).val(false);
+            }
+        });
+    }
+    function clearResikoSection()
+    {
+        $("input[name='KKP.chkRisiko']").prop("checked", false);
+        $("#pKriteria").hide();
+        $("#pTindakan").hide();
+        $("#KKP_KriteriaResiko").hide();
+        $("#KKP_TindakanResiko").hide();
+        $("#KKP_KriteriaResiko").val('');
+        $("#KKP_TindakanResiko").val('');
+    }
+
+</script>
